@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+} from "@/frontend/node_modules/@types/react";
 import { FlatList, ScrollView, Text } from "react-native";
 import tw from "twrnc";
-import { Dechetterie } from "../../interfaces/Dechetterie";
+import { Dechetterie } from "../../frontend/app/interfaces/Dechetterie";
 import EcoCard from "./EcoCard";
 import EcoFiltre from "./EcoFilter";
 
@@ -34,7 +37,7 @@ const EcoRecherche = () => {
           dechets_inertes: record.dechets_inertes,
           accueil_des_professionnels: record.accueil_des_professionnels,
           accueil_des_services_techniques:
-          record.accueil_des_services_techniques,
+            record.accueil_des_services_techniques,
         }));
 
         setDechetteries(formattedData);

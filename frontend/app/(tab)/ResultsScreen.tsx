@@ -1,4 +1,4 @@
-import { BackendResponse } from "@/interfaces/types";
+import { BackendResponse } from "@/frontend/app/interfaces/types";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 import { ScrollView, Text, View, useWindowDimensions } from "react-native";

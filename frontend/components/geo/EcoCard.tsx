@@ -1,4 +1,4 @@
-import React from "react";
+import React from "@/frontend/node_modules/@types/react";
 import { Text, View } from "react-native";
 import tw from "twrnc";
 

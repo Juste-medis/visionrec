@@ -1,12 +1,11 @@
+import { ImageActionsProps } from "@/frontend/app/interfaces/types";
+import React from "@/frontend/node_modules/@types/react";
 import { Camera, Download, Images, Trash } from "lucide-react-native";
-import React from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 import tw from "twrnc";
 import JsonDisplay from "./JsonDisplay";
-import {ImageActionsProps } from "@/interfaces/types";
 
-
-const ImageActions: React.FC<ImageActionsProps>  = ({
+const ImageActions: React.FC<ImageActionsProps> = ({
   onTakePhoto,
   onSelectImage,
   onDeleteImage,
@@ -84,10 +83,7 @@ const ImageActions: React.FC<ImageActionsProps>  = ({
         <JsonDisplay jsonData={jsonData} />
       </View>
     )}
-
-
   </View>
-  
 );
 
 export default ImageActions;

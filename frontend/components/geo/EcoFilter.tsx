@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import tw from 'twrnc';
-import { Dechetterie } from '../../interfaces/Dechetterie'; 
+import React, { useState } from "@/frontend/node_modules/@types/react";
+import { Picker } from "@react-native-picker/picker";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import tw from "twrnc";
+import { Dechetterie } from "../../frontend/app/interfaces/Dechetterie";
 
 interface EcoFiltreProps {
   onFilter: (attribute: keyof Dechetterie, searchTerm: string) => void;
 }
 
 const EcoFiltre: React.FC<EcoFiltreProps> = ({ onFilter }) => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [selectedAttribute, setSelectedAttribute] = useState<keyof Dechetterie>('nom_de_la_decheterie');
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedAttribute, setSelectedAttribute] = useState<keyof Dechetterie>(
+    "nom_de_la_decheterie"
+  );
 
   const handleSearch = () => {
     onFilter(selectedAttribute, searchTerm);
@@ -27,12 +29,15 @@ const EcoFiltre: React.FC<EcoFiltreProps> = ({ onFilter }) => {
         onValueChange={handleAttributeChange}
         style={tw`mb-2`}
       >
-        <Picker.Item label="Nom de la déchèterie" value="nom_de_la_decheterie" />
+        <Picker.Item
+          label="Nom de la déchèterie"
+          value="nom_de_la_decheterie"
+        />
         <Picker.Item label="Adresse" value="adresse_1" />
         <Picker.Item label="Commune" value="commune" />
         <Picker.Item label="Code Postal" value="code_postal" />
       </Picker>
-    
+
       <TextInput
         placeholder="Rechercher..."
         value={searchTerm}
@@ -50,7 +55,7 @@ const EcoFiltre: React.FC<EcoFiltreProps> = ({ onFilter }) => {
       {searchTerm && (
         <TouchableOpacity
           onPress={() => {
-            setSearchTerm('');
+            setSearchTerm("");
             handleSearch();
           }}
           style={tw`mt-2 bg-red-500 rounded-full py-2`}

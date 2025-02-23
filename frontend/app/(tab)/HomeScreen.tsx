@@ -1,6 +1,7 @@
 import CustomAlert from "@/components/CustomAlert";
 import ImageActions from "@/components/imageHandle/ImageActions";
 import ImagePreview from "@/components/imageHandle/ImagePreview";
+import { BackendResponse } from "@/frontend/app/interfaces/types";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
@@ -12,12 +13,10 @@ import {
   Alert,
   Dimensions,
   Platform,
-  Text,
-  View,
   ScrollView,
+  Text,
 } from "react-native";
 import tw from "twrnc";
-import { BackendResponse } from "@/interfaces/types";
 
 const { width, height } = Dimensions.get("window");
 
@@ -42,8 +41,6 @@ const HomeScreenContent = () => {
   const [loading, setLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [jsonData, setJsonData] = useState<BackendResponse | null>(null);
-
-
 
   // Vérifier les permissions de la caméra
   useEffect(() => {
@@ -133,7 +130,10 @@ const HomeScreenContent = () => {
       if (Platform.OS === "web") {
         const response = await fetch(image);
         const blob = await response.blob();
-        formData.append("file", new File([blob], "upload.jpg", { type: blob.type }));
+        formData.append(
+          "file",
+          new File([blob], "upload.jpg", { type: blob.type })
+        );
       } else {
         const fileInfo = await FileSystem.getInfoAsync(image);
         if (!fileInfo.exists) {
@@ -149,11 +149,15 @@ const HomeScreenContent = () => {
       console.log("Envoi de l'image au backend...");
 
       // Utilisation de axios pour envoyer l'image
-      const uploadResponse = await axios.post("https://adidome.com/visionrec/waste/classify", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", 
-        },
-      });
+      const uploadResponse = await axios.post(
+        "https://adidome.com/visionrec/waste/classify",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       if (!uploadResponse.data.success) {
         throw new Error("Échec de l'envoi de l'image au backend.");
       }
@@ -165,20 +169,25 @@ const HomeScreenContent = () => {
       // Naviguer vers ResultsScreen avec les données JSON
       router.push({
         pathname: "/(tab)/ResultsScreen",
-        params: { jsonData:JSON.stringify(uploadResponse.data) },
+        params: { jsonData: JSON.stringify(uploadResponse.data) },
       });
-
     } catch (error) {
       console.error("Erreur :", error);
-      Alert.alert("Erreur", "Une erreur est survenue lors du traitement de l'image.");
+      Alert.alert(
+        "Erreur",
+        "Une erreur est survenue lors du traitement de l'image."
+      );
     } finally {
       setLoading(false);
     }
   };
 
-
   return (
-    <ScrollView contentContainerStyle={tw.style("flex-grow items-center justify-center bg-white p-4")}>
+    <ScrollView
+      contentContainerStyle={tw.style(
+        "flex-grow items-center justify-center bg-white p-4"
+      )}
+    >
       {error && <Text style={tw.style("text-red-500 mb-4")}>{error}</Text>}
       {loading && (
         <ActivityIndicator
@@ -205,6 +214,5 @@ const HomeScreenContent = () => {
     </ScrollView>
   );
 };
-
 
 export default HomeScreenContent;

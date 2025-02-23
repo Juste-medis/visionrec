@@ -1,4 +1,4 @@
-import React from "react";
+import React from "@/frontend/node_modules/@types/react";
 import { Dimensions, Image, Platform, View } from "react-native";
 import tw from "twrnc";
 
@@ -7,11 +7,7 @@ const { width, height } = Dimensions.get("window");
 const ImagePreview = ({ image }: { image: string | null }) => {
   if (!image) return null;
   return (
-    <View
-      style={tw.style(
-        "w-full items-center justify-center p-4 "
-      )}
-    >
+    <View style={tw.style("w-full items-center justify-center p-4 ")}>
       <Image
         source={{ uri: image }}
         style={{
