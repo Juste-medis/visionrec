@@ -51,9 +51,10 @@ const Connection = () => {
         throw new Error(response.data.message || "Erreur de connexion");
       }
 
+      // Stocker le token dans AsyncStorage
       const token = response.data.access_token;
-
       await AsyncStorage.setItem("userToken", token);
+
       router.replace("/(tab)/HomeScreen");
     } catch (error) {
       if (axios.isAxiosError(error)) {

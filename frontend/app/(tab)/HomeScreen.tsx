@@ -127,14 +127,14 @@ const HomeScreenContent = () => {
     }
     try {
       setLoading(true);
-      // code ajoutée
+      // Récupérer le token d'authentification depuis le stockage local
       const token = await AsyncStorage.getItem("userToken");
-      // code ajoutée
       if (!token) {
         Alert.alert("Erreur", "Token d'authentification manquant.");
         return;
       }
 
+      // Envoyer l'image au backend
       const formData = new FormData();
       if (Platform.OS === "web") {
         const response = await fetch(image);
@@ -164,7 +164,7 @@ const HomeScreenContent = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-             "Authorization": `Bearer ${token}`, // code ajoutée
+             "Authorization": `Bearer ${token}`,
           },
         }
       );
@@ -176,6 +176,7 @@ const HomeScreenContent = () => {
 
       // Récupérer les données JSON depuis le backend
       setJsonData(uploadResponse.data);
+      
       // Naviguer vers ResultsScreen avec les données JSON
       router.push({
         pathname: "/(tab)/ResultsScreen",

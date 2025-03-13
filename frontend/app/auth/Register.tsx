@@ -51,6 +51,7 @@ const Register = () => {
 
     setLoading(true);
     try {
+      // Envoyer les données au backend
       const response = await fetch("https://adidome.com/visionrec/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -67,6 +68,7 @@ const Register = () => {
 
       Alert.alert("Succès", "Compte créé !");
       router.replace("/auth/Connection");
+
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
