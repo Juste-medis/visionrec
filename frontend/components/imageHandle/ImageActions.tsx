@@ -1,5 +1,5 @@
-import { ImageActionsProps } from "@/frontend/app/interfaces/types";
-import React from "@/frontend/node_modules/@types/react";
+import { ImageActionsProps } from "@/interfaces/types";
+import React from "react";
 import { Camera, Download, Images, Trash } from "lucide-react-native";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 import tw from "twrnc";

@@ -1,5 +1,5 @@
-import { BackendResponse } from "@/frontend/app/interfaces/types";
-import React from "@/frontend/node_modules/@types/react";
+import { BackendResponse } from "@/interfaces/types";
+import React from "react";
 import { Text, View } from "react-native";
 
 interface JsonDisplayProps {

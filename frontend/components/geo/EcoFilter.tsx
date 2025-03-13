@@ -1,8 +1,8 @@
-import React, { useState } from "@/frontend/node_modules/@types/react";
+import React, { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import tw from "twrnc";
-import { Dechetterie } from "../../frontend/app/interfaces/Dechetterie";
+import { Dechetterie } from "../../interfaces/Dechetterie";
 
 interface EcoFiltreProps {
   onFilter: (attribute: keyof Dechetterie, searchTerm: string) => void;

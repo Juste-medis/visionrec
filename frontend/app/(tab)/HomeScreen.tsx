@@ -1,13 +1,14 @@
 import CustomAlert from "@/components/CustomAlert";
 import ImageActions from "@/components/imageHandle/ImageActions";
 import ImagePreview from "@/components/imageHandle/ImagePreview";
-import { BackendResponse } from "@/frontend/app/interfaces/types";
+import { BackendResponse } from "@/interfaces/types";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import FormData from "form-data";
 import React, { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   ActivityIndicator,
   Alert,
@@ -126,6 +127,14 @@ const HomeScreenContent = () => {
     }
     try {
       setLoading(true);
+      // code ajoutée
+      const token = await AsyncStorage.getItem("userToken");
+      // code ajoutée
+      if (!token) {
+        Alert.alert("Erreur", "Token d'authentification manquant.");
+        return;
+      }
+
       const formData = new FormData();
       if (Platform.OS === "web") {
         const response = await fetch(image);
@@ -155,6 +164,7 @@ const HomeScreenContent = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+             "Authorization": `Bearer ${token}`, // code ajoutée
           },
         }
       );

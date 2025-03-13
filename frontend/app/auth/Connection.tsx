@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -10,9 +11,7 @@ import {
   View,
 } from "react-native";
 
-
 const Connection = () => {
-
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,21 +39,29 @@ const Connection = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post("https://adidome.com/visionrec/auth/login", {
-        email: email.trim(),
-        password,
-      });
+      const response = await axios.post(
+        "https://adidome.com/visionrec/auth/login",
+        {
+          email: email.trim(),
+          password,
+        }
+      );
 
       if (response.status !== 200) {
         throw new Error(response.data.message || "Erreur de connexion");
       }
 
-      Alert.alert("Succès", "Connexion réussie !");
+      const token = response.data.access_token;
+
+      await AsyncStorage.setItem("userToken", token);
       router.replace("/(tab)/HomeScreen");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setError(error.response?.data.message || "Erreur de connexion");
-        Alert.alert("Erreur", error.response?.data.message || "Erreur de connexion");
+        Alert.alert(
+          "Erreur",
+          error.response?.data.message || "Erreur de connexion"
+        );
       } else {
         setError("Une erreur inconnue s'est produite");
         Alert.alert("Erreur", "Une erreur inconnue s'est produite");

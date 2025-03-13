@@ -15,6 +15,8 @@
     ".expo/types/**/*.ts",
     "frontend/expo-env.d.ts",
     "frontend/nativewind-env.d.ts",
-    "frontend/nativewind-env.d.ts"
+    "frontend/nativewind-env.d.ts",
+    "nativewind-env.d.ts",
+    "expo-env.d.ts"
   ]
 }

@@ -1,4 +1,4 @@
-import React from "@/frontend/node_modules/@types/react";
+import React from "react";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
 import tw from "twrnc";
 

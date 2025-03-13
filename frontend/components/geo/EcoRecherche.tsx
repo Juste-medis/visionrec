@@ -1,10 +1,10 @@
 import React, {
   useEffect,
   useState,
-} from "@/frontend/node_modules/@types/react";
+} from "react";
 import { FlatList, ScrollView, Text } from "react-native";
 import tw from "twrnc";
-import { Dechetterie } from "../../frontend/app/interfaces/Dechetterie";
+import { Dechetterie } from "../../interfaces/Dechetterie";
 import EcoCard from "./EcoCard";
 import EcoFiltre from "./EcoFilter";
 
@@ -19,7 +19,7 @@ const EcoRecherche = () => {
     const fetchDechetteries = async () => {
       try {
         const response = await fetch(
-          "https://data.smartidf.services/api/explore/v2.1/catalog/datasets/listes-des-dechetteries/records?limit=100"
+          "https://data.iledefrance.fr/api/explore/v2.1/catalog/datasets/listes-des-dechetteries/records?limit=100"
         );
         const data = await response.json();
 
