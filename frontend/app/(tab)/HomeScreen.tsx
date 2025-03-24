@@ -159,7 +159,7 @@ const HomeScreenContent = () => {
 
       // Utilisation de axios pour envoyer l'image
       const uploadResponse = await axios.post(
-        "https://adidome.com/visionrec/waste/classify",
+        "http://visionrec.adidome.com/waste/classify",
         formData,
         {
           headers: {

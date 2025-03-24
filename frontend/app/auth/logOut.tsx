@@ -20,7 +20,7 @@ const LogoutScreen = () => {
     try {
       // Envoi de la requête de déconnexion
       const response = await axios.post(
-        "https://adidome.com/visionrec/auth/logout"
+        "http://visionrec.adidome.com/auth/logout"
       );
 
       if (response.status === 200) {
