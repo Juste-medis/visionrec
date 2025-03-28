@@ -33,7 +33,7 @@ const ForgotPassword = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post("https://visionrec.adidome.com/auth/forgot-password", {
+      const response = await axios.post("https://visionrec.adidome.com/auth/ressetpass", {
         email: email.trim(),
       });
 
@@ -42,7 +42,7 @@ const ForgotPassword = () => {
           "Succès",
           "Un lien de réinitialisation a été envoyé à votre adresse e-mail."
         );
-        router.replace("/auth/Connection");
+        router.push(`/auth/VerificationOTP?email=${email}`);
       } else {
         throw new Error("Erreur lors de l'envoi du lien de réinitialisation.");
       }
