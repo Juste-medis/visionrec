@@ -33,7 +33,7 @@ const ForgotPassword = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post("https://adidome.com/visionrec/forgot-password", {
+      const response = await axios.post("https://visionrec.adidome.com/auth/forgot-password", {
         email: email.trim(),
       });
 

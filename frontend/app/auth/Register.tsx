@@ -52,7 +52,7 @@ const Register = () => {
     setLoading(true);
     try {
       // Envoyer les données au backend
-      const response = await fetch("http://visionrec.adidome.com/auth/register", {
+      const response = await fetch("https://visionrec.adidome.com/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -40,7 +40,7 @@ const Connection = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://visionrec.adidome.com/auth/login",
+        "https://visionrec.adidome.com/auth/login",
         {
           email: email.trim(),
           password,

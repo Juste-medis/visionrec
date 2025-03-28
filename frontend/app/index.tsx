@@ -12,6 +12,7 @@ export default function Index() {
 {/*<Redirect href="/(tab)/HomeScreen" />*/}
 
 
+//git add .
 //git commit -m "Description des modifications"
 //git push origin main
 //git status
